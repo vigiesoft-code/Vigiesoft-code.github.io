@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sentinelle — Real-time S&amp;P 500 analytics | Logiciels Vigiesoft Inc.</title>
+<meta name="description" content="Sentinelle is a real-time analytics platform for S&P 500 futures and options, developed by Logiciels Vigiesoft Inc. in Quebec City, Canada.">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="Sentinelle — Real-time S&P 500 analytics">
+<meta property="og:description" content="A real-time analytics platform for S&P 500 futures and options, by Logiciels Vigiesoft Inc.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f1720'/%3E%3Cpath d='M6 21l6-7 5 4 9-10' fill='none' stroke='%23e0a53a' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#f6f7f9; --panel:#ffffff; --ink:#121821; --ink2:#4f5a68; --ink3:#7d8896;
+  --line:#dfe3e9; --accent:#b97a12; --accent-soft:#fbf2df;
+  --up:#128a5b; --down:#c0392b; --grid:#e8ebf0;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0d1117; --panel:#151b23; --ink:#e8edf3; --ink2:#a2adba; --ink3:#6f7b89;
+    --line:#252d38; --accent:#e0a53a; --accent-soft:#2a2113;
+    --up:#3fb984; --down:#e0685a; --grid:#1d242e;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+header{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:0;z-index:10}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.2px;color:var(--ink)}
+.brand:hover{text-decoration:none}
+.brand svg{width:26px;height:26px;flex:none}
+.brand small{font-weight:500;color:var(--ink3);font-size:13px}
+.links{display:flex;gap:22px;font-size:14.5px}
+.links a{color:var(--ink2)}
+.links a:hover{color:var(--ink);text-decoration:none}
+@media(max-width:620px){.links{display:none}.brand small{display:none}}
+
+.hero{padding:72px 0 56px}
+.eyebrow{display:inline-block;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--accent);background:var(--accent-soft);padding:4px 10px;border-radius:999px;margin-bottom:18px}
+h1{font-size:clamp(32px,5.4vw,52px);line-height:1.1;letter-spacing:-.025em;margin:0 0 18px;max-width:16ch}
+.lead{font-size:clamp(17px,2.1vw,20px);color:var(--ink2);max-width:60ch;margin:0 0 28px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;padding:11px 20px;border-radius:9px;font-weight:600;font-size:15px}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.ghost{border:1px solid var(--line);color:var(--ink);background:var(--panel)}
+.btn:hover{text-decoration:none;filter:brightness(1.06)}
+
+.figure{margin:48px 0 0;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 16px 10px}
+.figure svg{width:100%;height:auto;display:block}
+.figure figcaption{font-size:12.5px;color:var(--ink3);text-align:center;padding-top:8px}
+
+section{padding:56px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(23px,3vw,30px);letter-spacing:-.02em;margin:0 0 10px}
+.sub{color:var(--ink2);max-width:64ch;margin:0 0 32px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px}
+.card h3{font-size:16.5px;margin:0 0 6px;letter-spacing:-.01em}
+.card p{margin:0;color:var(--ink2);font-size:14.8px}
+.num{font:600 12px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--accent);
+  display:block;margin-bottom:12px;letter-spacing:.06em}
+
+.status{display:flex;gap:14px;align-items:flex-start;background:var(--accent-soft);
+  border:1px solid var(--accent);border-radius:12px;padding:18px 20px;max-width:760px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--accent);margin-top:8px;flex:none}
+.status p{margin:0;color:var(--ink)}
+
+.two{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:start}
+@media(max-width:760px){.two{grid-template-columns:1fr}}
+dl{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px 20px}
+dl div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14.8px}
+dl div:last-child{border-bottom:0}
+dt{color:var(--ink3)}
+dd{margin:0;text-align:right;font-weight:500}
+
+footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--ink3);font-size:13.5px}
+footer p{margin:0 0 8px;max-width:80ch}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Sentinelle home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0f1720"/><path d="M6 21l6-7 5 4 9-10" fill="none" stroke="#e0a53a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Sentinelle <small>by Logiciels Vigiesoft Inc.</small>
+    </a>
+    <nav class="links" aria-label="Sections">
+      <a href="#platform">Platform</a>
+      <a href="#how">How it works</a>
+      <a href="#status">Status</a>
+      <a href="#company">Company</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <div class="wrap hero">
+    <span class="eyebrow">S&amp;P 500 futures &amp; options</span>
+    <h1>Real-time market analytics, built on our own data feed.</h1>
+    <p class="lead">Sentinelle captures live futures and options data for S&amp;P 500 instruments, processes it server-side, and turns it into key price levels and signals that traders can read directly on the chart.</p>
+    <div class="cta">
+      <a class="btn primary" href="#contact">Contact us</a>
+      <a class="btn ghost" href="#how">How it works</a>
+    </div>
+
+    <figure class="figure">
+      <svg viewBox="0 0 960 300" role="img" aria-label="Illustrative candlestick chart with two horizontal price levels">
+        <g stroke="var(--grid)" stroke-width="1">
+          <line x1="0" y1="60" x2="960" y2="60"/><line x1="0" y1="120" x2="960" y2="120"/>
+          <line x1="0" y1="180" x2="960" y2="180"/><line x1="0" y1="240" x2="960" y2="240"/>
+        </g>
+        <g stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="6 5">
+          <line x1="0" y1="92" x2="960" y2="92"/><line x1="0" y1="214" x2="960" y2="214"/>
+        </g>
+        <g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="var(--accent)">
+          <text x="8" y="86">LEVEL A</text>
+          <text x="8" y="208">LEVEL B</text>
+        </g>
+        <g stroke-width="1.5">
+          <g stroke="var(--down)" fill="var(--down)">
+            <line x1="40" y1="120" x2="40" y2="178"/><rect x="33" y="130" width="14" height="38"/>
+            <line x1="80" y1="150" x2="80" y2="208"/><rect x="73" y="160" width="14" height="36"/>
+            <line x1="120" y1="186" x2="120" y2="230"/><rect x="113" y="192" width="14" height="24"/>
+            <line x1="360" y1="108" x2="360" y2="150"/><rect x="353" y="114" width="14" height="26"/>
+            <line x1="400" y1="126" x2="400" y2="170"/><rect x="393" y="134" width="14" height="28"/>
+            <line x1="640" y1="82" x2="640" y2="128"/><rect x="633" y="92" width="14" height="28"/>
+            <line x1="680" y1="106" x2="680" y2="150"/><rect x="673" y="114" width="14" height="26"/>
+            <line x1="880" y1="70" x2="880" y2="112"/><rect x="873" y="78" width="14" height="24"/>
+          </g>
+          <g stroke="var(--up)" fill="var(--up)">
+            <line x1="160" y1="196" x2="160" y2="236"/><rect x="153" y="204" width="14" height="14"/>
+            <line x1="200" y1="170" x2="200" y2="222"/><rect x="193" y="178" width="14" height="32"/>
+            <line x1="240" y1="146" x2="240" y2="192"/><rect x="233" y="152" width="14" height="30"/>
+            <line x1="280" y1="122" x2="280" y2="166"/><rect x="273" y="128" width="14" height="28"/>
+            <line x1="320" y1="100" x2="320" y2="140"/><rect x="313" y="108" width="14" height="24"/>
+            <line x1="440" y1="140" x2="440" y2="178"/><rect x="433" y="146" width="14" height="20"/>
+            <line x1="480" y1="116" x2="480" y2="160"/><rect x="473" y="122" width="14" height="30"/>
+            <line x1="520" y1="98" x2="520" y2="136"/><rect x="513" y="104" width="14" height="24"/>
+            <line x1="560" y1="84" x2="560" y2="120"/><rect x="553" y="90" width="14" height="22"/>
+            <line x1="600" y1="76" x2="600" y2="108"/><rect x="593" y="84" width="14" height="14"/>
+            <line x1="720" y1="118" x2="720" y2="156"/><rect x="713" y="124" width="14" height="22"/>
+            <line x1="760" y1="98" x2="760" y2="138"/><rect x="753" y="104" width="14" height="26"/>
+            <line x1="800" y1="82" x2="800" y2="118"/><rect x="793" y="88" width="14" height="22"/>
+            <line x1="840" y1="64" x2="840" y2="102"/><rect x="833" y="72" width="14" height="22"/>
+            <line x1="920" y1="74" x2="920" y2="104"/><rect x="913" y="80" width="14" height="14"/>
+          </g>
+        </g>
+      </svg>
+      <figcaption>Illustration only — not live market data.</figcaption>
+    </figure>
+  </div>
+
+  <section id="platform">
+    <div class="wrap">
+      <h2>What Sentinelle does</h2>
+      <p class="sub">One platform that goes from raw market data to a chart a trader can act on, without depending on third-party analytics.</p>
+      <div class="grid">
+        <div class="card">
+          <h3>Live data capture</h3>
+          <p>Continuous ingestion of real-time futures and options market data for S&amp;P 500 instruments, including ES, SPX and SPY.</p>
+        </div>
+        <div class="card">
+          <h3>Server-side analytics</h3>
+          <p>Data is stored, aggregated into candles and analysed on the server on a short, fixed processing cycle.</p>
+        </div>
+        <div class="card">
+          <h3>Key price levels</h3>
+          <p>The platform derives price levels of interest from options activity and market structure, and tracks how price reacts to them.</p>
+        </div>
+        <div class="card">
+          <h3>Chart-first delivery</h3>
+          <p>Levels and signals are displayed as overlays on live price charts, so the analysis is read where trading decisions are made.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <h2>How it works</h2>
+      <p class="sub">Sentinelle runs on its own data feed, from the exchange data subscription to the browser.</p>
+      <div class="grid">
+        <div class="card"><span class="num">01 — CAPTURE</span><h3>Market data in</h3><p>Licensed real-time feeds are captured by dedicated services and written to the database as they arrive.</p></div>
+        <div class="card"><span class="num">02 — PROCESS</span><h3>Aggregate and compute</h3><p>SQL Server aggregates ticks into multi-timeframe candles and computes levels and signals through stored procedures.</p></div>
+        <div class="card"><span class="num">03 — SERVE</span><h3>Datafeed API</h3><p>An ASP.NET Core backend exposes history over REST and live updates over WebSocket to the web client.</p></div>
+        <div class="card"><span class="num">04 — DISPLAY</span><h3>Interactive charts</h3><p>The web client renders live candles together with Sentinelle's computed levels and signal annotations.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="status">
+    <div class="wrap">
+      <h2>Project status</h2>
+      <p class="sub">Where the platform stands today.</p>
+      <div class="status">
+        <span class="dot" aria-hidden="true"></span>
+        <p><strong>In development.</strong> The data capture and analytics engine is operational and currently used internally. The public web version of Sentinelle is in development. To be notified when it opens, write to us at the address below.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="company">
+    <div class="wrap two">
+      <div>
+        <h2>About Logiciels Vigiesoft Inc.</h2>
+        <p class="sub" style="margin-bottom:14px">Logiciels Vigiesoft Inc. is an independent software company based in Quebec City, Canada. It designs and builds data-intensive software, with a focus on real-time market data systems.</p>
+        <p class="sub" style="margin-bottom:0">Sentinelle is led by its founder, a software engineer with thirty years of experience building large-scale systems.</p>
+      </div>
+      <dl>
+        <div><dt>Company</dt><dd>Logiciels Vigiesoft Inc.</dd></div>
+        <div><dt>Location</dt><dd>Quebec City, Canada</dd></div>
+        <div><dt>Product</dt><dd>Sentinelle</dd></div>
+        <div><dt>Code</dt><dd><a href="https://github.com/vigiesoft-code" rel="noopener">github.com/vigiesoft-code</a></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <h2>Contact</h2>
+      <p class="sub">Questions about Sentinelle or Logiciels Vigiesoft Inc.? We read every message.</p>
+      <a class="btn primary" href="mailto:vigiesoft@gmail.com">vigiesoft@gmail.com</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Sentinelle provides market analytics for informational purposes only. Nothing on this site is investment advice or a recommendation to buy or sell any financial instrument. Trading futures and options involves substantial risk of loss.</p>
+    <p>&copy; 2026 Logiciels Vigiesoft Inc. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
