@@ -44,8 +44,14 @@ header{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;
 .links a{color:var(--ink2)}
 .links a:hover{color:var(--ink);text-decoration:none}
 @media(max-width:620px){.links{display:none}.brand small{display:none}}
+.links{margin-left:auto}
+.lang{flex:none;font:600 12.5px/1 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:.06em;
+  color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 11px;cursor:pointer}
+.lang:hover{border-color:var(--accent);color:var(--accent)}
+.lang:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media(max-width:620px){.lang{margin-left:auto}}
 
-.hero{padding:72px 0 56px}
+.hero{padding-top:72px;padding-bottom:56px}
 .eyebrow{display:inline-block;font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
   color:var(--accent);background:var(--accent-soft);padding:4px 10px;border-radius:999px;margin-bottom:18px}
 h1{font-size:clamp(32px,5.4vw,52px);line-height:1.1;letter-spacing:-.025em;margin:0 0 18px;max-width:16ch}
@@ -91,33 +97,34 @@ footer p{margin:0 0 8px;max-width:80ch}
 
 <header>
   <div class="wrap nav">
-    <a class="brand" href="#top" aria-label="Sentinelle home">
+    <a class="brand" href="#top" aria-label="Sentinelle home" data-i18n-aria="aria_home">
       <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0f1720"/><path d="M6 21l6-7 5 4 9-10" fill="none" stroke="#e0a53a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Sentinelle <small>by Logiciels Vigiesoft Inc.</small>
+      Sentinelle <small data-i18n="brand_by">by Logiciels Vigiesoft Inc.</small>
     </a>
-    <nav class="links" aria-label="Sections">
-      <a href="#platform">Platform</a>
-      <a href="#how">How it works</a>
-      <a href="#status">Status</a>
-      <a href="#company">Company</a>
-      <a href="#contact">Contact</a>
+    <nav class="links" aria-label="Sections" data-i18n-aria="aria_nav">
+      <a data-i18n="nav_platform" href="#platform">Platform</a>
+      <a data-i18n="nav_how" href="#how">How it works</a>
+      <a data-i18n="nav_status" href="#status">Status</a>
+      <a data-i18n="nav_company" href="#company">Company</a>
+      <a data-i18n="nav_contact" href="#contact">Contact</a>
     </nav>
+    <button type="button" class="lang" id="langBtn" aria-label="Afficher le site en français" lang="fr">FR</button>
   </div>
 </header>
 
 <main id="top">
 
   <div class="wrap hero">
-    <span class="eyebrow">S&amp;P 500 futures &amp; options</span>
-    <h1>Real-time market analytics, built on our own data feed.</h1>
-    <p class="lead">Sentinelle captures live futures and options data for S&amp;P 500 instruments, processes it server-side, and turns it into key price levels and signals that traders can read directly on the chart.</p>
+    <span data-i18n="eyebrow" class="eyebrow">S&amp;P 500 futures &amp; options</span>
+    <h1 data-i18n="h1">Real-time market analytics, built on our own data feed.</h1>
+    <p data-i18n="lead" class="lead">Sentinelle captures live futures and options data for S&amp;P 500 instruments, processes it server-side, and turns it into key price levels and signals that traders can read directly on the chart.</p>
     <div class="cta">
-      <a class="btn primary" href="#contact">Contact us</a>
-      <a class="btn ghost" href="#how">How it works</a>
+      <a data-i18n="cta_contact" class="btn primary" href="#contact">Contact us</a>
+      <a data-i18n="cta_how" class="btn ghost" href="#how">How it works</a>
     </div>
 
     <figure class="figure">
-      <svg viewBox="0 0 960 300" role="img" aria-label="Illustrative candlestick chart with two horizontal price levels">
+      <svg viewBox="0 0 960 300" role="img" aria-label="Illustrative candlestick chart with two horizontal price levels" data-i18n-aria="aria_svg">
         <g stroke="var(--grid)" stroke-width="1">
           <line x1="0" y1="60" x2="960" y2="60"/><line x1="0" y1="120" x2="960" y2="120"/>
           <line x1="0" y1="180" x2="960" y2="180"/><line x1="0" y1="240" x2="960" y2="240"/>
@@ -126,8 +133,8 @@ footer p{margin:0 0 8px;max-width:80ch}
           <line x1="0" y1="92" x2="960" y2="92"/><line x1="0" y1="214" x2="960" y2="214"/>
         </g>
         <g font-family="ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="var(--accent)">
-          <text x="8" y="86">LEVEL A</text>
-          <text x="8" y="208">LEVEL B</text>
+          <text data-i18n="lvl_a" x="8" y="86">LEVEL A</text>
+          <text data-i18n="lvl_b" x="8" y="208">LEVEL B</text>
         </g>
         <g stroke-width="1.5">
           <g stroke="var(--down)" fill="var(--down)">
@@ -159,30 +166,30 @@ footer p{margin:0 0 8px;max-width:80ch}
           </g>
         </g>
       </svg>
-      <figcaption>Illustration only — not live market data.</figcaption>
+      <figcaption data-i18n="figcap">Illustration only — not live market data.</figcaption>
     </figure>
   </div>
 
   <section id="platform">
     <div class="wrap">
-      <h2>What Sentinelle does</h2>
-      <p class="sub">One platform that goes from raw market data to a chart a trader can act on, without depending on third-party analytics.</p>
+      <h2 data-i18n="plat_h">What Sentinelle does</h2>
+      <p data-i18n="plat_sub" class="sub">One platform that goes from raw market data to a chart a trader can act on, without depending on third-party analytics.</p>
       <div class="grid">
         <div class="card">
-          <h3>Live data capture</h3>
-          <p>Continuous ingestion of real-time futures and options market data for S&amp;P 500 instruments, including ES, SPX and SPY.</p>
+          <h3 data-i18n="c1_h">Live data capture</h3>
+          <p data-i18n="c1_p">Continuous ingestion of real-time futures and options market data for S&amp;P 500 instruments, including ES, SPX and SPY.</p>
         </div>
         <div class="card">
-          <h3>Server-side analytics</h3>
-          <p>Data is stored, aggregated into candles and analysed on the server on a short, fixed processing cycle.</p>
+          <h3 data-i18n="c2_h">Server-side analytics</h3>
+          <p data-i18n="c2_p">Data is stored, aggregated into candles and analysed on the server on a short, fixed processing cycle.</p>
         </div>
         <div class="card">
-          <h3>Key price levels</h3>
-          <p>The platform derives price levels of interest from options activity and market structure, and tracks how price reacts to them.</p>
+          <h3 data-i18n="c3_h">Key price levels</h3>
+          <p data-i18n="c3_p">The platform derives price levels of interest from options activity and market structure, and tracks how price reacts to them.</p>
         </div>
         <div class="card">
-          <h3>Chart-first delivery</h3>
-          <p>Levels and signals are displayed as overlays on live price charts, so the analysis is read where trading decisions are made.</p>
+          <h3 data-i18n="c4_h">Chart-first delivery</h3>
+          <p data-i18n="c4_p">Levels and signals are displayed as overlays on live price charts, so the analysis is read where trading decisions are made.</p>
         </div>
       </div>
     </div>
@@ -190,24 +197,24 @@ footer p{margin:0 0 8px;max-width:80ch}
 
   <section id="how">
     <div class="wrap">
-      <h2>How it works</h2>
-      <p class="sub">Sentinelle runs on its own data feed, from the exchange data subscription to the browser.</p>
+      <h2 data-i18n="how_h">How it works</h2>
+      <p data-i18n="how_sub" class="sub">Sentinelle runs on its own data feed, from the exchange data subscription to the browser.</p>
       <div class="grid">
-        <div class="card"><span class="num">01 — CAPTURE</span><h3>Market data in</h3><p>Licensed real-time feeds are captured by dedicated services and written to the database as they arrive.</p></div>
-        <div class="card"><span class="num">02 — PROCESS</span><h3>Aggregate and compute</h3><p>SQL Server aggregates ticks into multi-timeframe candles and computes levels and signals through stored procedures.</p></div>
-        <div class="card"><span class="num">03 — SERVE</span><h3>Datafeed API</h3><p>An ASP.NET Core backend exposes history over REST and live updates over WebSocket to the web client.</p></div>
-        <div class="card"><span class="num">04 — DISPLAY</span><h3>Interactive charts</h3><p>The web client renders live candles together with Sentinelle's computed levels and signal annotations.</p></div>
+        <div class="card"><span data-i18n="s1_n" class="num">01 — CAPTURE</span><h3 data-i18n="s1_h">Market data in</h3><p data-i18n="s1_p">Licensed real-time feeds are captured by dedicated services and written to the database as they arrive.</p></div>
+        <div class="card"><span data-i18n="s2_n" class="num">02 — PROCESS</span><h3 data-i18n="s2_h">Aggregate and compute</h3><p data-i18n="s2_p">SQL Server aggregates ticks into multi-timeframe candles and computes levels and signals through stored procedures.</p></div>
+        <div class="card"><span data-i18n="s3_n" class="num">03 — SERVE</span><h3 data-i18n="s3_h">Datafeed API</h3><p data-i18n="s3_p">An ASP.NET Core backend exposes history over REST and live updates over WebSocket to the web client.</p></div>
+        <div class="card"><span data-i18n="s4_n" class="num">04 — DISPLAY</span><h3 data-i18n="s4_h">Interactive charts</h3><p data-i18n="s4_p">The web client renders live candles together with Sentinelle's computed levels and signal annotations.</p></div>
       </div>
     </div>
   </section>
 
   <section id="status">
     <div class="wrap">
-      <h2>Project status</h2>
-      <p class="sub">Where the platform stands today.</p>
+      <h2 data-i18n="st_h">Project status</h2>
+      <p data-i18n="st_sub" class="sub">Where the platform stands today.</p>
       <div class="status">
         <span class="dot" aria-hidden="true"></span>
-        <p><strong>In development.</strong> The data capture and analytics engine is operational and currently used internally. The public web version of Sentinelle is in development. To be notified when it opens, write to us at the address below.</p>
+        <p data-i18n="st_p"><strong>In development.</strong> The data capture and analytics engine is operational and currently used internally. The public web version of Sentinelle is in development. To be notified when it opens, write to us at the address below.</p>
       </div>
     </div>
   </section>
@@ -215,15 +222,15 @@ footer p{margin:0 0 8px;max-width:80ch}
   <section id="company">
     <div class="wrap two">
       <div>
-        <h2>About Logiciels Vigiesoft Inc.</h2>
-        <p class="sub" style="margin-bottom:14px">Founded in 1998, Logiciels Vigiesoft Inc. is an independent software company based in Quebec City, Canada. It designs and builds data-intensive software, with a focus on real-time market data systems.</p>
-        <p class="sub" style="margin-bottom:0">Sentinelle is led by its founder, a software engineer with thirty years of experience building large-scale systems.</p>
+        <h2 data-i18n="co_h">About Logiciels Vigiesoft Inc.</h2>
+        <p data-i18n="co_p1" class="sub" style="margin-bottom:14px">Founded in 1998, Logiciels Vigiesoft Inc. is an independent software company based in Quebec City, Canada. It designs and builds data-intensive software, with a focus on real-time market data systems.</p>
+        <p data-i18n="co_p2" class="sub" style="margin-bottom:0">Sentinelle is led by its founder, a software engineer with thirty years of experience building large-scale systems.</p>
       </div>
       <dl>
-        <div><dt>Company</dt><dd>Logiciels Vigiesoft Inc.</dd></div>
-        <div><dt>Founded</dt><dd>1998</dd></div>
-        <div><dt>Location</dt><dd>Quebec City, Canada</dd></div>
-        <div><dt>Product</dt><dd>Sentinelle</dd></div>
+        <div><dt data-i18n="dl_co">Company</dt><dd>Logiciels Vigiesoft Inc.</dd></div>
+        <div><dt data-i18n="dl_fo">Founded</dt><dd>1998</dd></div>
+        <div><dt data-i18n="dl_lo">Location</dt><dd data-i18n="dl_lov">Quebec City, Canada</dd></div>
+        <div><dt data-i18n="dl_pr">Product</dt><dd>Sentinelle</dd></div>
         <div><dt>Code</dt><dd><a href="https://github.com/vigiesoft-code" rel="noopener">github.com/vigiesoft-code</a></dd></div>
       </dl>
     </div>
@@ -231,8 +238,8 @@ footer p{margin:0 0 8px;max-width:80ch}
 
   <section id="contact">
     <div class="wrap">
-      <h2>Contact</h2>
-      <p class="sub">Questions about Sentinelle or Logiciels Vigiesoft Inc.? We read every message.</p>
+      <h2 data-i18n="ct_h">Contact</h2>
+      <p data-i18n="ct_sub" class="sub">Questions about Sentinelle or Logiciels Vigiesoft Inc.? We read every message.</p>
       <a class="btn primary" href="mailto:info@vigiesoft.ca">info@vigiesoft.ca</a>
     </div>
   </section>
@@ -241,10 +248,102 @@ footer p{margin:0 0 8px;max-width:80ch}
 
 <footer>
   <div class="wrap">
-    <p>Sentinelle provides market analytics for informational purposes only. Nothing on this site is investment advice or a recommendation to buy or sell any financial instrument. Trading futures and options involves substantial risk of loss.</p>
-    <p>&copy; 2026 Logiciels Vigiesoft Inc. All rights reserved.</p>
+    <p data-i18n="ft_1">Sentinelle provides market analytics for informational purposes only. Nothing on this site is investment advice or a recommendation to buy or sell any financial instrument. Trading futures and options involves substantial risk of loss.</p>
+    <p data-i18n="ft_2">&copy; 2026 Logiciels Vigiesoft Inc. All rights reserved.</p>
   </div>
 </footer>
 
+<script>
+(function(){
+  var FR={
+ "brand_by": "par Logiciels Vigiesoft Inc.",
+ "nav_platform": "Plateforme",
+ "nav_how": "Fonctionnement",
+ "nav_status": "État",
+ "nav_company": "Société",
+ "nav_contact": "Contact",
+ "eyebrow": "Contrats à terme et options S&amp;P 500",
+ "h1": "L’analyse de marché en temps réel, sur notre propre flux de données.",
+ "lead": "Sentinelle capte en direct les données de contrats à terme et d’options sur les instruments du S&amp;P 500, les traite côté serveur et les transforme en niveaux de prix clés et en signaux que les traders lisent directement sur le graphique.",
+ "cta_contact": "Nous joindre",
+ "cta_how": "Fonctionnement",
+ "lvl_a": "NIVEAU A",
+ "lvl_b": "NIVEAU B",
+ "figcap": "Illustration seulement — il ne s’agit pas de données de marché réelles.",
+ "plat_h": "Ce que fait Sentinelle",
+ "plat_sub": "Une seule plateforme, des données de marché brutes jusqu’au graphique sur lequel un trader peut agir, sans dépendre d’analyses de tiers.",
+ "c1_h": "Capture des données en direct",
+ "c1_p": "Ingestion continue des données de marché en temps réel des contrats à terme et des options sur les instruments du S&amp;P 500, dont ES, SPX et SPY.",
+ "c2_h": "Analyse côté serveur",
+ "c2_p": "Les données sont stockées, agrégées en chandeliers et analysées sur le serveur selon un cycle de traitement court et fixe.",
+ "c3_h": "Niveaux de prix clés",
+ "c3_p": "La plateforme dérive des niveaux de prix d’intérêt à partir de l’activité sur options et de la structure du marché, et suit la réaction du prix à ces niveaux.",
+ "c4_h": "Le graphique d’abord",
+ "c4_p": "Les niveaux et les signaux s’affichent en superposition sur des graphiques de prix en direct : l’analyse se lit là où se prennent les décisions de trading.",
+ "how_h": "Fonctionnement",
+ "how_sub": "Sentinelle repose sur son propre flux de données, de l’abonnement aux données de la bourse jusqu’au navigateur.",
+ "s1_n": "01 — CAPTER",
+ "s1_h": "Entrée des données de marché",
+ "s1_p": "Des flux en temps réel sous licence sont captés par des services dédiés et écrits dans la base de données dès leur arrivée.",
+ "s2_n": "02 — TRAITER",
+ "s2_h": "Agréger et calculer",
+ "s2_p": "SQL Server agrège les ticks en chandeliers sur plusieurs unités de temps et calcule les niveaux et les signaux au moyen de procédures stockées.",
+ "s3_n": "03 — SERVIR",
+ "s3_h": "API de flux de données",
+ "s3_p": "Un backend ASP.NET Core expose l’historique par REST et les mises à jour en direct par WebSocket au client web.",
+ "s4_n": "04 — AFFICHER",
+ "s4_h": "Graphiques interactifs",
+ "s4_p": "Le client web affiche les chandeliers en direct avec les niveaux calculés par Sentinelle et les annotations de signaux.",
+ "st_h": "État du projet",
+ "st_sub": "Où en est la plateforme aujourd’hui.",
+ "st_p": "<strong>En développement.</strong> Le moteur de capture et d’analyse des données est opérationnel et sert actuellement à l’interne. La version web publique de Sentinelle est en développement. Pour être avisé de son ouverture, écrivez-nous à l’adresse ci-dessous.",
+ "co_h": "À propos de Logiciels Vigiesoft Inc.",
+ "co_p1": "Fondée en 1998, Logiciels Vigiesoft Inc. est une société de logiciels indépendante établie à Québec, au Canada. Elle conçoit et développe des logiciels à forte intensité de données, en particulier des systèmes de données de marché en temps réel.",
+ "co_p2": "Sentinelle est dirigée par son fondateur, un concepteur de logiciels comptant trente ans d’expérience dans la réalisation de systèmes à grande échelle.",
+ "dl_co": "Société",
+ "dl_fo": "Fondée en",
+ "dl_lo": "Lieu",
+ "dl_lov": "Québec, Canada",
+ "dl_pr": "Produit",
+ "ct_h": "Contact",
+ "ct_sub": "Des questions sur Sentinelle ou sur Logiciels Vigiesoft Inc.? Nous lisons tous les messages.",
+ "ft_1": "Sentinelle fournit des analyses de marché à titre informatif seulement. Rien sur ce site ne constitue un conseil en placement ni une recommandation d’acheter ou de vendre un instrument financier. La négociation de contrats à terme et d’options comporte un risque de perte important.",
+ "ft_2": "&copy; 2026 Logiciels Vigiesoft Inc. Tous droits réservés."
+};
+  var FR_ARIA={"aria_home": "Accueil Sentinelle", "aria_nav": "Sections", "aria_svg": "Graphique en chandeliers illustratif avec deux niveaux de prix horizontaux"};
+  var FR_META={"title": "Sentinelle — Analyse du S&P 500 en temps réel | Logiciels Vigiesoft Inc.", "desc": "Sentinelle est une plateforme d’analyse en temps réel des contrats à terme et des options sur le S&P 500, développée par Logiciels Vigiesoft Inc. à Québec, au Canada."};
+  var EN={},EN_ARIA={};
+  var nodes=document.querySelectorAll('[data-i18n]');
+  var anodes=document.querySelectorAll('[data-i18n-aria]');
+  var metaDesc=document.querySelector('meta[name="description"]');
+  var EN_META={title:document.title,desc:metaDesc?metaDesc.getAttribute('content'):''};
+  for(var i=0;i<nodes.length;i++){EN[nodes[i].getAttribute('data-i18n')]=nodes[i].innerHTML;}
+  for(var j=0;j<anodes.length;j++){EN_ARIA[anodes[j].getAttribute('data-i18n-aria')]=anodes[j].getAttribute('aria-label');}
+  var btn=document.getElementById('langBtn');
+  function store(v){try{localStorage.setItem('lang',v);}catch(e){}}
+  function stored(){try{return localStorage.getItem('lang');}catch(e){return null;}}
+  function apply(lang){
+    var T=lang==='fr'?FR:EN, A=lang==='fr'?FR_ARIA:EN_ARIA, M=lang==='fr'?FR_META:EN_META;
+    for(var i=0;i<nodes.length;i++){var k=nodes[i].getAttribute('data-i18n');if(T[k]!=null)nodes[i].innerHTML=T[k];}
+    for(var j=0;j<anodes.length;j++){var a=anodes[j].getAttribute('data-i18n-aria');if(A[a]!=null)anodes[j].setAttribute('aria-label',A[a]);}
+    document.documentElement.lang=lang;
+    document.title=M.title;
+    if(metaDesc)metaDesc.setAttribute('content',M.desc);
+    if(btn){
+      btn.textContent=lang==='fr'?'EN':'FR';
+      btn.setAttribute('lang',lang==='fr'?'en':'fr');
+      btn.setAttribute('aria-label',lang==='fr'?'View this site in English':'Afficher le site en français');
+    }
+  }
+  var q=(location.search.match(/[?&]lang=(fr|en)\b/)||[])[1];
+  var lang=q||stored()||((navigator.language||'').toLowerCase().indexOf('fr')===0?'fr':'en');
+  if(q)store(q);
+  if(lang==='fr')apply('fr');
+  if(btn)btn.addEventListener('click',function(){
+    var next=document.documentElement.lang==='fr'?'en':'fr';
+    store(next);apply(next);
+  });
+})();
+</script>
 </body>
 </html>
