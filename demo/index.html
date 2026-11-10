@@ -82,7 +82,7 @@ footer p{margin:0 0 6px;max-width:90ch}
       <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#0f1720"/><path d="M6 21l6-7 5 4 9-10" fill="none" stroke="#e0a53a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
       Sentinelle <small>by Logiciels Vigiesoft Inc.</small>
     </a>
-    <span class="meta">Product demo · September 28, 2026</span>
+    <span class="meta">Product demo · November 10, 2026</span>
   </div>
 </header>
 
@@ -90,39 +90,17 @@ footer p{margin:0 0 6px;max-width:90ch}
   <div class="wrap hero">
     <span class="eyebrow">Product demo</span>
     <h1>Sentinelle, recorded on a live ES session</h1>
-    <p class="lead">Four short recordings of the Sentinelle indicators running on our current desktop setup (Quantower, ES front-month futures, September 28, 2026). Each recording pauses on the elements worth explaining; press <em>Continue</em> to resume.</p>
-    <p class="note">All values are computed server-side in our SQL database; the indicators only read and display them. Chart labels inside the recordings are in French, our working language. This desktop setup is what the web client, built on Advanced Charts, is intended to replace.</p>
+    <p class="lead">One recording of the Sentinelle web client, in active development, running on TradingView Advanced Charts (ES front-month futures, November 10, 2026): a 5-minute overview, a Dark Pool print, then the 1-minute chart.</p>
+    <p class="note">All values are computed server-side in our SQL database and delivered through a custom datafeed; the custom studies only read and display them. Some interface labels are in French, our working language. This web client replaces our previous desktop setup.</p>
   </div>
 
   <section>
     <div class="wrap">
-      <h2>1 · Overview — 5-minute chart</h2>
-      <p class="sub">The full workspace: three indicators on price, three analysis panels below.</p>
-      <div class="tour" data-video="media/es-5m.mp4" data-poster="media/es-5m.jpg" data-stops="s5m"></div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <h2>2 · Same session — 1-minute chart</h2>
-      <p class="sub">Zones, flow and price reaction at a finer timeframe.</p>
-      <div class="tour" data-video="media/es-1m.mp4" data-poster="media/es-1m.jpg" data-stops="s1m"></div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <h2>3 · Accelerated replay — 30-second chart, 13:14 to 13:44 ET</h2>
-      <p class="sub">Thirty minutes of session replayed in thirty seconds: bars, zones and panels update as the market moves.</p>
-      <div class="tour" data-video="media/es-30s-replay-1.mp4" data-poster="media/es-30s-replay-1.jpg" data-stops="r1"></div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <h2>4 · Accelerated replay — 30-second chart, 13:54 to 14:24 ET</h2>
-      <p class="sub">A range-bound half hour: zones form, extend and close as price leaves them.</p>
-      <div class="tour" data-video="media/es-30s-replay-2.mp4" data-poster="media/es-30s-replay-2.jpg" data-stops="r2"></div>
+      <h2>Sentinelle on TradingView Advanced Charts</h2>
+      <p class="sub">Recorded on a live ES session, replayed at accelerated speed.</p>
+      <div class="tour">
+        <div class="stage"><video controls playsinline muted preload="metadata" poster="media/tv-es-2026-11-10.jpg" src="media/tv-es-2026-11-10.mp4"></video></div>
+      </div>
     </div>
   </section>
 
@@ -222,105 +200,10 @@ footer p{margin:0 0 6px;max-width:90ch}
 
 <footer>
   <div class="wrap">
-    <p>Recordings of Sentinelle running in Quantower on September 28, 2026. Provided for evaluation purposes only; not investment advice.</p>
+    <p>Recording of Sentinelle running on TradingView Advanced Charts on November 10, 2026. Provided for evaluation purposes only; not investment advice.</p>
     <p>&copy; 2026 Logiciels Vigiesoft Inc. · <a href="https://vigiesoft.ca/">vigiesoft.ca</a> · <a href="mailto:info@vigiesoft.ca">info@vigiesoft.ca</a></p>
   </div>
 </footer>
 
-<script>
-(function(){
-  // box = [left, top, width, height] in % of the video frame
-  var STOPS={
-    s5m:[
-      {t:1.5,box:[1.3,8.8,8.2,3.8],title:"Sentinelle indicators in Quantower",
-       text:"Options Zones Accumulation, Options POI and Options Legs draw on the price chart; three analysis panels sit below. Everything is computed server-side; the indicators only read and display."},
-      {t:5.0,box:[89,25,9.5,25.5],title:"Options POI: option walls on the ES scale",
-       text:"Walls from ES, SPX and SPY options, brought to the ES price scale and summed when they land on the same price. Each label shows Σ, the sources, the type and the timeframe."},
-      {t:8.0,box:[0.8,51.5,98.2,47.5],title:"Three analysis panels",
-       text:"Options vs Price (did price follow the options flow?), Options Aggressor (net aggressor flow, bar by bar) and Options Entry (an oscillator applied to cumulative flow)."},
-      {t:11.0,box:[78.8,36.3,6.2,4.2],title:"Live objects",
-       text:"Labels marked « en cours » (in progress) belong to the current leg or zone: their Σ keeps updating with each new bar until the leg closes."}
-    ],
-    s1m:[
-      {t:6.0,box:[1.3,8.8,8.2,3.8],title:"Same indicators, 1-minute chart",
-       text:"Every indicator follows the chart's timeframe and refreshes 10 seconds after each bar closes: driven by the market, never by a timer."},
-      {t:15.0,box:[64.2,30.8,5.6,6],title:"Accumulation zone",
-       text:"Price holds a narrow band while options accumulate flow. The Σ label is the cumulative options aggressor flow since the zone opened; an arrow marks the exit side."},
-      {t:15.1,box:[51.2,57,5.2,6.5],title:"Options vs Price: absorption",
-       text:"Orange bars: strong options flow, but price does not follow. Cyan means healthy (price follows the flow), violet means vacuum (price moves without flow)."},
-      {t:15.2,box:[1,67.5,97.5,15],title:"Options Aggressor",
-       text:"Bar-by-bar net flow as a histogram, with the stock line cumulated since the last leg pivot and its moving average."}
-    ],
-    r1:[
-      {t:1.0,box:null,title:"Accelerated replay",
-       text:"13:14 to 13:44 ET on the 30-second chart, replayed in 30 seconds. Watch the bars, zones and panels update together."},
-      {t:25.0,box:[69,50.5,2.8,8.5],title:"A burst of options flow",
-       text:"Tall cyan bars in Options vs Price: a strong flow that price follows."},
-      {t:25.1,box:[1,83,97.5,16],title:"Options Entry",
-       text:"Fast line (Price Line) and slow line (Liquid Eq) around the 50 equilibrium, computed on cumulative options flow instead of price. Touch points are visual markers only."}
-    ],
-    r2:[
-      {t:1.0,box:null,title:"Accelerated replay",
-       text:"13:54 to 14:24 ET on the 30-second chart, replayed in 30 seconds: a range-bound half hour."},
-      {t:24.0,box:[59.3,26.3,7.4,9.6],title:"Zones forming in a range",
-       text:"Accumulation zones open, extend with each new bar and close when price leaves them; the Σ label tracks the options flow inside each zone."},
-      {t:24.1,box:[84.8,24.8,4.9,2.9],title:"Leg in progress",
-       text:"The current leg is dotted and labelled « en cours »: its Σ updates live until the next pivot closes it."}
-    ]
-  };
-  var AUTO=8; // seconds before auto-continue
-
-  document.querySelectorAll('.tour').forEach(function(root){
-    var stops=STOPS[root.dataset.stops].slice().sort(function(a,b){return a.t-b.t;});
-    root.innerHTML=
-      '<div class="stage"><video playsinline muted preload="metadata" controls></video><div class="hlbox"></div></div>'+
-      '<div class="caption"><span class="step">Ready</span><div class="ctext"><strong></strong><p></p></div></div>'+
-      '<div class="controls"><button class="btn primary" data-act="play">Play guided tour</button>'+
-      '<button class="btn" data-act="cont" disabled>Continue</button>'+
-      '<button class="btn" data-act="restart">Restart</button>'+
-      '<label class="chk"><input type="checkbox" data-act="skip"> Play without stops</label></div>';
-    var v=root.querySelector('video'), box=root.querySelector('.hlbox'),
-        step=root.querySelector('.step'), tt=root.querySelector('.ctext strong'), tx=root.querySelector('.ctext p'),
-        bPlay=root.querySelector('[data-act=play]'), bCont=root.querySelector('[data-act=cont]'),
-        bRe=root.querySelector('[data-act=restart]'), cSkip=root.querySelector('[data-act=skip]');
-    v.src=root.dataset.video; v.poster=root.dataset.poster;
-    var next=0, holding=false, timer=null, raf=null;
-    tt.textContent=stops.length+' stops'; tx.textContent='Press "Play guided tour". The recording pauses on each highlighted element.';
-
-    function clearTimer(){ if(timer){clearInterval(timer);timer=null;} }
-    function hideBox(){ box.style.display='none'; }
-    function show(i){
-      var s=stops[i]; holding=true; v.pause();
-      step.textContent=(i+1)+' / '+stops.length; tt.textContent=s.title; tx.textContent=s.text;
-      if(s.box){ box.style.left=s.box[0]+'%'; box.style.top=s.box[1]+'%'; box.style.width=s.box[2]+'%'; box.style.height=s.box[3]+'%'; box.style.display='block'; }
-      else hideBox();
-      bCont.disabled=false;
-      var left=AUTO; bCont.textContent='Continue ('+left+')'; clearTimer();
-      timer=setInterval(function(){ left--; if(left<=0){ cont(); } else bCont.textContent='Continue ('+left+')'; },1000);
-    }
-    function cont(){
-      clearTimer(); bCont.disabled=true; bCont.textContent='Continue'; holding=false; hideBox();
-      next++;
-      if(next<stops.length && v.currentTime>=stops[next].t-0.02){ show(next); return; }
-      if(!v.ended) v.play();
-    }
-    function tick(){
-      if(!holding && !cSkip.checked && next<stops.length && v.currentTime>=stops[next].t){ show(next); }
-      if(!v.paused) raf=requestAnimationFrame(tick);
-    }
-    function resync(){ // after a seek: first stop not yet passed
-      next=0; while(next<stops.length && stops[next].t<v.currentTime-0.05) next++;
-    }
-    v.addEventListener('play',function(){ if(holding){ /* user pressed play on native controls */ clearTimer(); holding=false; hideBox(); bCont.disabled=true; bCont.textContent='Continue'; next++; } cancelAnimationFrame(raf); raf=requestAnimationFrame(tick); });
-    v.addEventListener('seeked',function(){ if(!holding) resync(); });
-    v.addEventListener('ended',function(){ step.textContent='End'; tt.textContent='End of recording'; tx.textContent='Press "Restart" to watch it again.'; hideBox(); });
-    bPlay.addEventListener('click',function(){ if(holding){cont();return;} if(v.ended){v.currentTime=0; next=0;} v.play(); });
-    bCont.addEventListener('click',cont);
-    bRe.addEventListener('click',function(){ clearTimer(); holding=false; hideBox(); bCont.disabled=true; bCont.textContent='Continue'; v.pause(); v.currentTime=0; next=0; step.textContent='Ready'; tt.textContent=stops.length+' stops'; tx.textContent='Press "Play guided tour".'; });
-    cSkip.addEventListener('change',function(){ if(cSkip.checked && holding) cont(); });
-    window.__tours=(window.__tours||[]).concat([{v:v,get next(){return next;},get holding(){return holding;},box:box,cont:cont}]);
-  });
-})();
-</script>
 </body>
 </html>
